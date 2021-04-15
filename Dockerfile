@@ -1,4 +1,4 @@
-FROM python:3.8-alpine as builder
+FROM python:3.9-alpine as builder
 
 RUN apk update && apk add  --no-cache tzdata ca-certificates alpine-sdk libressl-dev libffi-dev cargo
 
@@ -7,7 +7,7 @@ RUN pip3 install  --user -r /requirements.txt && rm /requirements.txt
 
 
 
-FROM python:3.8-alpine
+FROM python:3.9-alpine
 
 COPY --from=builder /root/.local /usr/local
 COPY --from=builder /etc/ssl/certs/ca-certificates.crt /etc/ssl/certs/
